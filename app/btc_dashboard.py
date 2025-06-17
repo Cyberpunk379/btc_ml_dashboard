@@ -11,10 +11,11 @@ from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 import subprocess
 import time
 
-# Auto-refresh every 5 minutes (300,000 ms)
-st_autorefresh(interval=60000, key="refresh_dashboard")
 
 st.set_page_config(page_title="Bitcoin Classifier & Price Predictor", layout="wide")
+
+# Auto-refresh every 5 minutes (300,000 ms)
+st_autorefresh(interval=60000, key="refresh_dashboard")
 
 # --- Sidebar Inputs ---
 st.sidebar.title("🧠 Classification Model Options")
