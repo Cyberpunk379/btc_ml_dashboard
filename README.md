@@ -38,7 +38,7 @@ A real-time Bitcoin trend classifier and price predictor powered by machine lear
   - Lasso Regression  
 
 All models are trained on engineered BTC features such as hourly returns, rolling means, and rolling standard deviations. The pipeline supports inference on the latest market data.
-
+```
 ---
 
 ## 📂 Project Structure
@@ -60,7 +60,7 @@ btc_ml_dashboard/
 
 
 ---
-
+```
 ## 🧪 Running Locally
 
 Clone the repo:
