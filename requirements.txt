@@ -1,6 +1,6 @@
 joblib==1.4.2
 matplotlib==3.10.3
-pandas==1.5.3
+pandas==1.3.3
 scikit_learn==1.7.0
 streamlit==1.45.1
 xgboost==1.5.2
