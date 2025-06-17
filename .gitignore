@@ -1,10 +1,14 @@
 __pycache__/
 *.pyc
 .env
-*.pkl
-*.csv
-data/
-models/
 .DS_Store
-
 .ipynb_checkpoints/
+
+# Allow models and data folders (don't ignore them)
+!models/
+!models/*.csv
+!models/*.pkl
+
+!data/
+!data/*.csv
+
