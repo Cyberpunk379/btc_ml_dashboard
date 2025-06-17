@@ -49,6 +49,24 @@ df_pred = pd.concat([df_feat, latest_row]).dropna()
 df_pred.to_csv(DATA_PATH / "btc_feature.csv", index=False)
 print("✅ Feature set saved to btc_feature.csv")
 
+print("🔎 df_pred shape:", df_pred.shape)
+print("🧪 Null values in df_pred:\n", df_pred.isnull().sum())
+print("🔍 Sample rows from df_pred:\n", df_pred.head())
+
+df_feat.dropna(inplace=True)
+
+if df_feat.empty:
+    raise ValueError("❌ df_feat is empty after dropna. Check feature engineering logic.")
+
+# Only add latest_row if it has no NaNs
+latest_row = df_feat.tail(1).copy()
+if latest_row.dropna().shape[0] == 1:
+    df_pred = pd.concat([df_feat, latest_row])
+else:
+    df_pred = df_feat.copy()
+
+
+
 # Step 4a: Classification (LogReg, Random Forest, XGBoost)
 X_clf = df_pred[['return_1h', 'rolling_mean_3h', 'rolling_mean_6h', 'rolling_std_3h']]
 clf_models = ["Logistic Regression", "Random Forest (Tuned)", "XGBoost (Tuned)"]
