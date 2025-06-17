@@ -1,5 +1,6 @@
 # btc_dashboard.py
 
+import sys
 import json
 import pandas as pd
 import streamlit as st
@@ -62,7 +63,7 @@ st.sidebar.title("🔁 Refresh Data")
 if st.sidebar.button("Run Inference Pipeline"):
     with st.spinner("Running full pipeline... please wait ⏳"):
         result = subprocess.run(
-            ["python", "main_pipeline.py"],
+            [sys.executable, "main_pipeline.py"],
             capture_output=True,
             text=True
         )
