@@ -15,7 +15,12 @@ MODEL_PATH.mkdir(exist_ok=True)
 # Step 0: Pull fresh BTC hourly data
 btc_tick = yf.Ticker("BTC-USD")
 hist = btc_tick.history(interval='1h', period='7d')
-hist.index = hist.index.tz_convert('US/Pacific').tz_localize(None)
+if hist.index.tz is None:
+    # Localize first, assuming it's UTC
+    hist.index = hist.index.tz_localize('UTC').tz_convert('US/Pacific').tz_localize(None)
+else:
+    hist.index = hist.index.tz_convert('US/Pacific').tz_localize(None)
+
 hist.reset_index(inplace=True)
 btc = hist[["Datetime", "Close"]]
 btc.rename(columns={"Datetime": "timestamp", "Close": "price"}, inplace=True)
