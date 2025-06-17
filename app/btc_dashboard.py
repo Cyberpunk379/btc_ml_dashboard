@@ -1,5 +1,5 @@
 # btc_dashboard.py
-
+import os
 import sys
 import json
 import pandas as pd
@@ -62,8 +62,10 @@ def load_data(model_option, reg_model_option):
 st.sidebar.title("🔁 Refresh Data")
 if st.sidebar.button("Run Inference Pipeline"):
     with st.spinner("Running full pipeline... please wait ⏳"):
+        pipeline_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "main_pipeline.py"))
+
         result = subprocess.run(
-            [sys.executable, "../main_pipeline.py"],
+            [sys.executable, pipeline_path],
             capture_output=True,
             text=True
         )
