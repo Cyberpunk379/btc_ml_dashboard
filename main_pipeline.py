@@ -17,20 +17,18 @@ btc_tick = yf.Ticker("BTC-USD")
 hist = btc_tick.history(interval='1h', period='7d')
 
 # Ensure index is a timezone-aware DatetimeIndex
-hist.index = pd.to_datetime(hist.index)
-
-if hist.index.tz is None:
-    hist.index = hist.index.tz_localize('UTC')
-
-hist.index = hist.index.tz_convert('US/Pacific').tz_localize(None)
-
 # Reset index and prepare final DataFrame
 hist.reset_index(inplace=True)
-btc = hist[["Datetime", "Close"]].copy()
-btc.rename(columns={"Datetime": "timestamp", "Close": "price"}, inplace=True)
+print("✅ Available columns after reset_index:", hist.columns)
+
+# Use correct column name dynamically
+datetime_col = "Datetime" if "Datetime" in hist.columns else hist.columns[0]  # Usually 'Date' or 'index'
+btc = hist[[datetime_col, "Close"]].copy()
+btc.rename(columns={datetime_col: "timestamp", "Close": "price"}, inplace=True)
 btc.to_csv(DATA_PATH / "btc_hourly_yf.csv", index=False)
 
 print("✅ BTC hourly data saved.")
+
 
 
 
