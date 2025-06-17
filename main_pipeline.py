@@ -26,11 +26,13 @@ hist.index = hist.index.tz_convert('US/Pacific').tz_localize(None)
 
 # Reset index and prepare final DataFrame
 hist.reset_index(inplace=True)
-btc = hist[["Datetime", "Close"]]
+btc = hist[["Datetime", "Close"]].copy()
 btc.rename(columns={"Datetime": "timestamp", "Close": "price"}, inplace=True)
 btc.to_csv(DATA_PATH / "btc_hourly_yf.csv", index=False)
 
 print("✅ BTC hourly data saved.")
+
+
 
 # Step 1: Load and transform
 df_raw = load_and_transform(DATA_PATH / "btc_hourly_yf.csv")
