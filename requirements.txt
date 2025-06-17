@@ -3,5 +3,5 @@ matplotlib==3.10.3
 pandas==1.5.3
 scikit_learn==1.7.0
 streamlit==1.45.1
-xgboost==1.7.6
+xgboost==1.6.2
 yfinance==0.2.63
