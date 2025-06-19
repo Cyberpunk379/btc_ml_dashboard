@@ -74,15 +74,25 @@ Create a virtual environment (e.g., with conda or venv) and install dependencies
 pip install -r requirements.txt
 ```
 
-Launch the dashboard:
-```
-streamlit run app/btc_dashboard.py
-```
+- Launch the dashboard:
+- streamlit run app/btc_dashboard.py
 
-To run the full pipeline on latest data:
-```
-python main_pipeline.py
-```
+
+- To run the full pipeline on latest data:
+- python main_pipeline.py
++ To run the end-to-end ML pipeline on fresh BTC data:
++ python main_pipeline.py
++ 
++ Output files:
++ - `data/btc_hourly_yf.csv` – raw BTC data (hourly)
++ - `data/btc_feature.csv` – feature engineered dataset
++ - `models/btc_*_model.csv` – model predictions (clf + reg)
+
+⚠️ Note: Ensure your `scikit-learn` version matches the one used during model serialization (v1.6.1).  
+To avoid errors during unpickling, use:
+```bash
+pip install scikit-learn==1.6.1
+
 
 📜 License
 
