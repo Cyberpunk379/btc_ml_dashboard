@@ -5,6 +5,7 @@ A real-time Bitcoin trend classifier and price predictor powered by machine lear
 ![Python](https://img.shields.io/badge/python-3.10-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Streamlit](https://img.shields.io/badge/Streamlit-Deployed-orange)
+![Model Accuracy](https://img.shields.io/badge/accuracy-92%25-brightgreen)
 
 ---
 
@@ -44,21 +45,21 @@ All models are trained on engineered BTC features such as hourly returns, rollin
 ## 📂 Project Structure
 ```
 btc_ml_dashboard/
-├── app/ # Streamlit dashboard UI
-│ └── btc_dashboard.py
-├── data/ # Raw + feature engineered CSVs
-├── models/ # .pkl files + prediction CSV outputs
-├── notebooks/ # Optional: Jupyter explorations
-├── scripts/ # Model training & pipeline logic
-│ ├── pipeline_serve.py
-│ ├── pipeline_classification_model.py
-│ └── pipeline_regression_model.py
-├── main_pipeline.py # One-click inference runner
-├── run_all.sh # (Optional) Shell runner
-├── requirements.txt # Python dependencies
+├── app/                  # Streamlit dashboard UI
+│   └── btc_dashboard.py
+├── data/                # Raw + feature engineered CSVs
+├── models/              # .pkl files + prediction CSV outputs
+├── notebooks/           # Optional: Jupyter explorations
+├── scripts/             # Model training & pipeline logic
+│   ├── pipeline_serve.py
+│   ├── pipeline_classification_model.py
+│   └── pipeline_regression_model.py
+├── main_pipeline.py     # One-click inference runner
+├── run_all.sh           # (Optional) Shell runner
+├── requirements.txt     # Python dependencies
 └── README.md
-
 ```
+
 ---
 
 ## 🧪 Running Locally
@@ -69,34 +70,57 @@ Clone the repo:
 git clone https://github.com/Cyberpunk379/btc_ml_dashboard.git
 cd btc_ml_dashboard
 ```
+
 Create a virtual environment (e.g., with conda or venv) and install dependencies:
-```
+```bash
 pip install -r requirements.txt
 ```
 
-- Launch the dashboard:
-- streamlit run app/btc_dashboard.py
+To launch the dashboard:
+```bash
+streamlit run app/btc_dashboard.py
+```
 
+To run the end-to-end ML pipeline on fresh BTC data:
+```bash
+python main_pipeline.py
+```
 
-- To run the full pipeline on latest data:
-- python main_pipeline.py
-+ To run the end-to-end ML pipeline on fresh BTC data:
-+ python main_pipeline.py
-+ 
-+ Output files:
-+ - `data/btc_hourly_yf.csv` – raw BTC data (hourly)
-+ - `data/btc_feature.csv` – feature engineered dataset
-+ - `models/btc_*_model.csv` – model predictions (clf + reg)
+Output files:
+- `data/btc_hourly_yf.csv` – raw BTC data (hourly)
+- `data/btc_feature.csv` – feature engineered dataset
+- `models/btc_*_model.csv` – model predictions (classification + regression)
 
-⚠️ Note: Ensure your `scikit-learn` version matches the one used during model serialization (v1.6.1).  
-To avoid errors during unpickling, use:
+---
+
+## 🛠 Troubleshooting
+
+**KeyError: 'Datetime' not in index**  
+➡️ Ensure you're running `main_pipeline.py` which uses dynamic column detection after resetting the index.
+
+**ValueError: Found array with 0 sample(s)**  
+➡️ Check for missing values or logic errors in `feature_engineering.py`. The pipeline will fail if the dataset is empty after preprocessing.
+
+**Unpickling model error (scikit-learn mismatch)**  
+➡️ Ensure your environment matches the version used for model training:
 ```bash
 pip install scikit-learn==1.6.1
+```
+Or retrain models locally to match your installed version.
 
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature-name`)
+3. Commit your changes
+4. Push to your fork and submit a PR
+
+We welcome contributions, feature requests, and issue reports!
 
 📜 License
 
 MIT © 2025 Cyberpunk379
 
 Built with ⚡ by Cyberpunk379 – feel free to fork, star, or contribute!
-
