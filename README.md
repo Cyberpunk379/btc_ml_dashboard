@@ -11,7 +11,7 @@ A real-time Bitcoin trend classifier and price predictor powered by machine lear
 
 ## 🚀 Try it Live
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/Cyberpunk379/btc_ml_dashboard/main/app/btc_dashboard.py)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://btcmldashboard-9ozcscbhkbzm2xifxgyxnk.streamlit.app)
 
 ---
 
