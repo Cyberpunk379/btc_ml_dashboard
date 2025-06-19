@@ -76,6 +76,9 @@ if st.sidebar.button("Run Inference Pipeline"):
         else:
             st.success("✅ Predictions updated successfully!")
             st.cache_data.clear()
+        # Force reloading immediately
+        st.rerun()
+
 
 # --- Load data ---
 df_clf, df_reg = load_data(model_option, reg_model_option)
