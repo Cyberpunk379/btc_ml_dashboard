@@ -36,6 +36,11 @@ print("✅ BTC hourly data saved.")
 df_raw = load_and_transform(DATA_PATH / "btc_hourly_yf.csv")
 df_feat = engineer_features(df_raw)
 
+print("✅ df_feat preview:\n", df_feat.head())
+print("✅ df_feat shape:", df_feat.shape)
+print("✅ Null counts:\n", df_feat.isnull().sum())
+
+
 # Step 2: Add future target
 df_feat["future_price"] = df_feat["price"].shift(-1)
 df_feat["target"] = (df_feat["future_price"] > df_feat["price"]).astype(int)
