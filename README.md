@@ -108,6 +108,9 @@ pip install scikit-learn==1.6.1
 ```
 Or retrain models locally to match your installed version.
 
+**Streamlit Cloud errors**  
+➡️ Make sure your project paths are relative and all required files are committed. Avoid absolute `~/Users/...` references for deployment.
+
 ---
 
 ## 🤝 Contributing
