@@ -60,8 +60,15 @@ print("🔍 Sample rows from df_pred:\n", df_pred.head())
 
 df_feat.dropna(inplace=True)
 
+df_feat.dropna(inplace=True)
 if df_feat.empty:
-    raise ValueError("❌ df_feat is empty after dropna. Check feature engineering logic.")
+    print("⚠️ No data after dropna — attempting to use latest row only.")
+    latest_row = df_raw.tail(1).copy()
+    df_feat = engineer_features(latest_row)
+    df_feat.dropna(inplace=True)
+    if df_feat.empty:
+        raise ValueError("❌ Still empty after fallback. Feature engineering issue.")
+
 
 # Only add latest_row if it has no NaNs
 latest_row = df_feat.tail(1).copy()
