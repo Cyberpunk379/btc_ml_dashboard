@@ -55,7 +55,6 @@ btc_ml_dashboard/
 │   ├── pipeline_classification_model.py
 │   └── pipeline_regression_model.py
 ├── main_pipeline.py     # One-click inference runner
-├── run_all.sh           # (Optional) Shell runner
 ├── requirements.txt     # Python dependencies
 └── README.md
 ```
